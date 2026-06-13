@@ -28,3 +28,10 @@ algoritmos/
 ## Status
 
 ⬜ Não iniciado
+
+# Anotações livro: Entendendo Algoritmos
+
+Busca Binária:
+
+Forma rápida de achar números/ids dentro de um algoritmo "quebrando" a lista ao meio todas as vezes para achar o que procura, precisa de log²n.
+Busca binária só funciona em listas ordenadas!!! Seja por ordem alfabética ou crescente/decrescente.
