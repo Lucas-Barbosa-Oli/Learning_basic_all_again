@@ -58,3 +58,15 @@ não existem maneiras de se utilizar nenhum outro algoritmo e notação nesse ca
     - A rapidez de um algoritmo não é medida em segundos!
     - O tempo de execução de um algoritmo é medido por meio de seu crescimento.
     - O tempo de execução dos algoritmos é expresso na notação Big O
+
+# Capítulo2
+
+Arrays: espaços na memória para salvar informações, só que é dependente de um espaço correto na memória, se precisar de mais espaços do que foi disponibilizado, terá de se realocar.
+Lista encadeada: usa espaços na memória referenciando sempre ao próximo, ou seja, mais disponibilidades para listas e menos dores de cabeça.
+
+Arrays são ótimos se você deseja ler elementos aleatórios, pois pode encontrar qualquer elemento instantaneamente em um array.
+Na lista aleatória, como os números são referenciados aleatoriamente, tem que ir de um em um para saber onde cada um se encontra para daí sim, achar o item de escolha.
+
+Tempo de execução de arrays e lista
+            leitura   O(1)  |  O(n)
+            inserção  O(n)  |  O(1)
