@@ -9,19 +9,20 @@ Exercícios de plataformas externas documentados neste repositório.
 - [Exercism](https://exercism.org/)
 - [Codewars](https://www.codewars.com/)
 
-## Organização sugerida
+## Organização dos desafios
 
 ```
 desafios/
-├── leetcode/
-│   └── two-sum/
-│       ├── README.md      # Enunciado e abordagem
-│       ├── python.py
-│       └── go.go
-└── exercism/
-    └── python/
+├── soma_lista.py
+├── duplicados.py
+├── duas_somas.py
+├── palindromo.py
+└── algarismos_romanos.py
 ```
+
+As variações do mesmo desafio ficam no mesmo arquivo para facilitar a
+comparação entre a solução simples e as soluções mais eficientes.
 
 ## Status
 
-⬜ Não iniciado
+⬜ Iniciado
