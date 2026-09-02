@@ -1,4 +1,4 @@
-'''def buscapalind(palavra):
+def buscapalind(palavra):
     esquerda = 0
     direita = len(palavra) - 1
     while esquerda < direita:
@@ -12,4 +12,3 @@ print(buscapalind("arara"))    # True
 print(buscapalind("banana"))   # False
 print(buscapalind("a"))        # True (1 letra sozinha é sempre palíndromo)
 print(buscapalind(""))         # True (string vazia)
-'''
