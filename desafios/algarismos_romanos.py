@@ -12,5 +12,16 @@ def romano_para_inteiro(s):
         "M": 1000,
     }
 
-    print(romano_para_inteiro("III"))  # 3
-    print(romano_para_inteiro("MCMXCIV"))  # 1994
+    total = 0
+
+    for i, n in enumerate(s):
+        valor_atual = valores[n]
+        if i + 1 < len(s) and valor_atual < valores[s[i + 1]]:
+            total = total - valor_atual
+        else:
+            total = total + valor_atual
+    return total
+
+print(romano_para_inteiro("III"))       # 3
+print(romano_para_inteiro("LVIII"))     # 58
+print(romano_para_inteiro("MCMXCIV"))   # 1994
