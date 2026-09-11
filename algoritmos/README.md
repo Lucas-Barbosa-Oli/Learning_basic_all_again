@@ -70,3 +70,109 @@ Na lista aleatória, como os números são referenciados aleatoriamente, tem que
 Tempo de execução de arrays e lista
             leitura   O(1)  |  O(n)
             inserção  O(n)  |  O(1)
+
+O que seria melhor para usar em um algoritmo de finanças onde você coloca os itens e depois quer vê-los?
+Um array pode ser usado para isso se não quiser deixar ordenado, pois vai ser adicionado um item após o outro na questão do uso mas,
+Caso queira usar um to do list por exemplo, onde as coisas devem ter ordem, o melhor seria usar uma linked list, pois assim é só mudar o ponteiro
+Para uma outra etapa e assim seguir, caso fosse usado o array, aí teria que ser inserido no meio do array, os índices deveriam ser alterados e caso não
+Haja espaço na memória, teria que realocá-lo de lugar para assim caber todo o array
+
+"""
+Comparativo: Array (lista dinâmica) x Lista Encadeada (Linked List)
+
+Cenário 1: Extrato financeiro usando ARRAY
+- Itens são sempre adicionados no final (append).
+- Não precisa reordenar nada, só cresce a lista.
+- Se a capacidade interna acabar, o Python realoca automaticamente
+  (isso também acontece em outras linguagens, como ArrayList em Java).
+"""
+
+class ExtratoFinanceiro:
+    def __init__(self):
+        self.transacoes = []  # implementado como array dinâmico
+
+    def adicionar_transacao(self, descricao, valor):
+        # Inserção no final: O(1) amortizado, sem precisar mexer em outros índices
+        self.transacoes.append({"descricao": descricao, "valor": valor})
+
+    def exibir(self):
+        for i, t in enumerate(self.transacoes):
+            print(f"[{i}] {t['descricao']}: R$ {t['valor']:.2f}")
+
+
+"""
+Cenário 2: To-do list usando LISTA ENCADEADA
+- Os itens têm uma ORDEM (etapas de uma tarefa, por exemplo).
+- Inserir no meio da lista só exige alterar os ponteiros dos nós vizinhos,
+  não há necessidade de deslocar índices nem realocar memória.
+"""
+
+class No:
+    def __init__(self, tarefa):
+        self.tarefa = tarefa
+        self.proximo = None  # ponteiro para o próximo nó
+
+
+class ToDoList:
+    def __init__(self):
+        self.cabeca = None  # primeiro nó da lista
+
+    def adicionar_no_fim(self, tarefa):
+        novo_no = No(tarefa)
+        if self.cabeca is None:
+            self.cabeca = novo_no
+            return
+        atual = self.cabeca
+        while atual.proximo:
+            atual = atual.proximo
+        atual.proximo = novo_no
+
+    def inserir_apos(self, tarefa_referencia, nova_tarefa):
+        """
+        Insere uma nova tarefa logo depois de uma tarefa existente.
+        Repare: só mexemos em DOIS ponteiros, independente do tamanho da lista.
+        Não há deslocamento de índices nem realocação de memória.
+        """
+        atual = self.cabeca
+        while atual and atual.tarefa != tarefa_referencia:
+            atual = atual.proximo
+
+        if atual is None:
+            print(f"Tarefa '{tarefa_referencia}' não encontrada.")
+            return
+
+        novo_no = No(nova_tarefa)
+        novo_no.proximo = atual.proximo  # o novo nó aponta para quem vinha depois
+        atual.proximo = novo_no          # a tarefa de referência aponta para o novo nó
+
+    def exibir(self):
+        atual = self.cabeca
+        posicao = 0
+        while atual:
+            print(f"[{posicao}] {atual.tarefa}")
+            atual = atual.proximo
+            posicao += 1
+
+
+if __name__ == "__main__":
+    print("=== Extrato financeiro (Array) ===")
+    extrato = ExtratoFinanceiro()
+    extrato.adicionar_transacao("Salário", 3000.00)
+    extrato.adicionar_transacao("Aluguel", -1200.00)
+    extrato.adicionar_transacao("Mercado", -450.00)
+    extrato.exibir()
+
+    print("\n=== To-do list (Lista Encadeada) ===")
+    lista = ToDoList()
+    lista.adicionar_no_fim("Levantar requisitos")
+    lista.adicionar_no_fim("Codificar")
+    lista.adicionar_no_fim("Publicar")
+
+    print("Antes de inserir 'Testar':")
+    lista.exibir()
+
+    # Inserindo "Testar" entre "Codificar" e "Publicar" -> só muda ponteiro
+    lista.inserir_apos("Codificar", "Testar")
+
+    print("\nDepois de inserir 'Testar' (sem deslocar nada, só mudou o ponteiro):")
+    lista.exibir()
