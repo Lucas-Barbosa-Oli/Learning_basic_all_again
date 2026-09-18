@@ -1,4 +1,4 @@
-class Node:
+'''class Node:
     def __init__(self, valor):
         self.valor = valor      # Armazena o dado
         self.proximo = None     # Aponta para o próximo nó (inicialmente vazio)
@@ -44,3 +44,16 @@ lista.append(30)
 
 # Mostrando os elementos: 10 -> 20 -> 30
 lista.mostrar()
+'''
+
+class Node: #cria a classe do Nó
+    def __init__(self, data): #cria o construtor referenciando ele mesmo e o valor
+        self.data = data #armazena o dado
+        self.next = None #aponta para o próximo nó
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        
